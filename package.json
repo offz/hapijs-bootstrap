@@ -7,7 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js"
   },
   "engines": {
     "node": "4.4.x",
@@ -38,9 +38,10 @@
     }
   },
   "dependencies": {
-    
+    "boom": "^4.0.0",
+    "hapi": "^15.0.2",
+    "joi": "^9.0.4",
+    "vision": "^4.1.0"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }
