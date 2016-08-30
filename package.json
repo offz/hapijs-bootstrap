@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tresmo/wilo__tippspiel--backend.git"
+    "url": "https://github.com/offz/hapijs-bootstrap"
   },
   "config": {
     "ghooks": {

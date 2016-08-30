@@ -2,7 +2,7 @@ const nodeEnvFile = require('node-env-file');
 const path = require('path');
 const fs = require('fs');
 const pack  = require('../package.json');
-nodeEnvFile(__dirname + '/.env', {raise: false});
+nodeEnvFile(path.join(__dirname, '../.env'), {raise: false});
 const env = process.env;
 
 

@@ -48,7 +48,6 @@ var plugins = [
  * @param callback
  */
 export default function (server, callback = function () {}) {
-    console.log('Register plugins.');
     // Assure that `plugins` is an array in a processable format
     Joi.assert(
         plugins,
