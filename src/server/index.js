@@ -2,12 +2,14 @@
 
 import Hapi from 'hapi';
 
-import config from 'config.js';
+import config from '../config.js';
 import registerPlugins from './utils/registerPlugins';
 
 let server;
 
+
 function start(next) {
+    console.log('Server starting.');
 
     server = new Hapi.Server();
 
@@ -28,9 +30,11 @@ function start(next) {
         labels: ['web']
     });
 
+    console.log('Start registering plugins.');
     // Register plugins
     return registerPlugins(server, (err) => {
         if (err) return next(err);
+        console.log('Register plugins successful.');
 
         return server.start( (err) => {
             if (err) return next(err);
@@ -45,7 +49,7 @@ function stop(next) {
     server.stop( err => {
         if (err) return next(err);
         server = null;
-        console.log('Server stopped');
+        console.log('Server stopped.');
         return next(err);
     });
 }

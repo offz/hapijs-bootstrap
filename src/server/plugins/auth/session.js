@@ -1,7 +1,7 @@
 'use strict';
 
 import Boom from 'boom';
-import Session from 'lib/models/Session';
+import Session from '../../../lib/models/Session';
 
 exports.register = (plugin, options, next) => {
 

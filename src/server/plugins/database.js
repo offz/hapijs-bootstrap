@@ -6,9 +6,8 @@ import Mongoose from 'mongoose';
 Promise.promisifyAll(Mongoose);
 
 exports.register = (plugin, options, next) => {
-
     Mongoose.connect(options.mongoDbUrl, {poolSize: 100}, (err) => {
-
+        console.log('error');
         if (err) throw new Error(err);
 
         plugin.ext({

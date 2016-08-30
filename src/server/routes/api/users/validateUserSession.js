@@ -2,7 +2,7 @@
 
 import Joi from 'joi';
 import Boom from 'boom';
-import User from 'lib/models/User';
+import User from '../../../../lib/models/User';
 
 
 /**

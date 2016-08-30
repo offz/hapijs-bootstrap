@@ -1,16 +1,10 @@
 'use strict';
 
 import pack from '../../../../package.json';
-import passwords from './passwords';
 import users from './users';
-import teams from './teams';
-import matches from './matches';
-import scores from './scores';
-import session from './session';
-import statistics from './statistics';
-import version from './version';
+import sessions from './sessions';
 
-const routes = [].concat(users, teams, matches, scores, session, statistics, version, passwords);
+const routes = [].concat(users, sessions);
 
 exports.register = (server, options, next) => {
 

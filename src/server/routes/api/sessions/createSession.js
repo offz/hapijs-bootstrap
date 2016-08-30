@@ -2,8 +2,8 @@
 
 import Joi from 'joi';
 import Boom from 'boom';
-import Session from 'lib/models/Session';
-import User from 'lib/models/User';
+import Session from '../../../../lib/models/Session';
+import User from '../../../../lib/models/User';
 
 /**
  * FUNCTIONS

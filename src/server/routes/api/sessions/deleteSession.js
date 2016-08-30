@@ -3,7 +3,7 @@
 import Joi from 'joi';
 import Boom from 'boom';
 
-import Session from 'lib/models/Session';
+import Session from '../../../../lib/models/Session';
 
 /**
  * FUNCTIONS

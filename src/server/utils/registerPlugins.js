@@ -6,16 +6,13 @@ import Hoek from 'hoek';
 import Hapi from 'hapi';
 import Vision from 'vision';
 import Inert from 'inert';
-import HapiSwagger from 'hapi-swagger'
+import HapiSwagger from 'hapi-swagger';
 
 import docConfig from '../doc';
 import database from '../plugins/database';
-import authSession from '../plugins/auth/basic';
-import authBasic from '../plugins/auth/session';
+import authSession from '../plugins/auth/session';
 import apiRoutes from '../routes/api';
-import webRoutes from '../routes/web';
-import config from 'config.js';
-
+import config from '../../config.js';
 
 var plugins = [
     {
@@ -34,14 +31,8 @@ var plugins = [
         register: authSession
     },
     {
-        register: authBasic
-    },
-    {
         register: HapiSwagger,
         options: docConfig
-    },
-    {
-        register: webRoutes
     },
     {
         register: apiRoutes
@@ -56,9 +47,8 @@ var plugins = [
  * @param plugins Plugins
  * @param callback
  */
-
 export default function (server, callback = function () {}) {
-
+    console.log('Register plugins.');
     // Assure that `plugins` is an array in a processable format
     Joi.assert(
         plugins,
@@ -75,7 +65,6 @@ export default function (server, callback = function () {}) {
 
     // Register each plugin
     async.eachSeries(plugins, (obj, cb) => {
-
         // Setup plugin with specific options which will be forwarded to this plugin
         let plugin = {
             register: obj.register,
