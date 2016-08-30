@@ -1,0 +1,46 @@
+{
+  "name": "hapijs-bootstrap",
+  "version": "0.0.1",
+  "description": "This is a simple HapiJS bootstrap project.",
+  "main": "server.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "start": "node server.js",
+  },
+  "engines": {
+    "node": "4.4.x",
+    "npm": "2.14.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tresmo/wilo__tippspiel--backend.git"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100
+    }
+  },
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+
+  }
+}
