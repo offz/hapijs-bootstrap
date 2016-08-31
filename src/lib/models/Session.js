@@ -1,11 +1,9 @@
 /*eslint-disable new-cap */
 
 import Mongoose from 'mongoose';
-import uuid from 'uuid';
 import _ from 'lodash';
 
 var SessionSchema = Mongoose.Schema({
-    _id: { type: String, default: uuid.v4 },
     userId: { type: String, required: true, ref: 'User' }
 });
 

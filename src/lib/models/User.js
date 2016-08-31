@@ -13,8 +13,6 @@ const saltRounds = 10;
 const userTypes = ['admin', 'user'];
 
 const UserSchema = new Schema({
-    _id: { type: String, unique: true, default: uuid.v4 },
-
     name: { type: String },
     email: { type: String, unique: true, required: true },
 

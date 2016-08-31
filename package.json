@@ -51,7 +51,6 @@
     "mongoose": "^4.5.10",
     "mongoose-unique-validator": "^1.0.2",
     "node-env-file": "^0.1.8",
-    "uuid": "^2.0.2",
     "vision": "^4.1.0"
   },
   "devDependencies": {
