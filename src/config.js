@@ -9,7 +9,6 @@ const env = process.env;
 const config = {
     name: pack.name,
     version: pack.version,
-    endpointUrl: env.ENDPOINT_URL,
 
     port: env.PORT || 8080,
 
