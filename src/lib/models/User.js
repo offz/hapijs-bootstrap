@@ -27,8 +27,9 @@ UserSchema.plugin(uniqueValidator);
  * Data transformation functions.
  * @returns {Object} A plain JavaScript user object
  */
-const purgedJSON = function (doc, ret, options) {
-    ret.id = ret._id;
+const dto = function (doc, ret, options) {
+    ret.id = doc.id;
+    delete ret._id;
     delete ret.password;
     delete ret.__v;
     return ret;

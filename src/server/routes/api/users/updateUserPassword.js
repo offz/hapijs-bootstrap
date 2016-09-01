@@ -2,7 +2,7 @@
 
 import Boom from 'boom';
 import Joi from 'joi';
-import User from 'lib/models/User';
+import User from '../../../../lib/models/User';
 
 
 /**
@@ -13,45 +13,23 @@ import User from 'lib/models/User';
  * @param reply
  */
 
-
 function handler(req, reply) {
-    let password = req.payload.password;
-    let passwordResetToken = req.payload.passwordResetToken;
-    let userId = req.params.userId;
+    const password = req.payload.password;
+    const passwordResetToken = req.payload.passwordResetToken;
+    const userId = req.params.userId;
 
-    return User.findAsync({
-            _id: userId
-        }).then( (users) => {
+    return User.findByIdAsync(userId)
+        .then( user => {
 
-            if (!users.length) {
-                return reply(Boom.badRequest('No user was found.'));
-            };
+            if (!user) return reply(Boom.badRequest('No user was found.'));
+            if (user.passwordResetToken !== passwordResetToken) return reply(Boom.unauthorized('Invalid password reset token.'));
+            if (user.isPasswordIdentical(password)) return reply(Boom.badRequest('Attempted password is identical with existing one.'));
 
-            let user = users[0];
+            return user.savePassword(password)
+                .then( () => reply({}).code(204));
 
-            if (user.passwordResetToken !== passwordResetToken) {
-                return Boom.unauthorized('Invalid password reset token.');
-            }
-
-            if (!user.isPasswordIdentical(password)) {
-
-                return user
-                    .savePassword(password)
-                    .then( () => {
-
-                        reply({
-                            success: true
-                        });
-                    });
-            } else {
-                return reply(Boom.badRequest('Attempted password is identical with existing one.'));
-            }
-
-    }).catch( (err) => {
-
-        reply(err);
-    });
-};
+    }).catch( err => reply(err));
+}
 
 
 /**
@@ -73,15 +51,8 @@ const validate = {
     }
 };
 
-const response = {
-    schema: Joi.object({
-        success: Joi.boolean().required()
-    })
-};
-
 export default {
     handler: handler,
-    validate: validate,
-    response: response
+    validate: validate
 };
 

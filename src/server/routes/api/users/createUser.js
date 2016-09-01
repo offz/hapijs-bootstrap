@@ -15,7 +15,7 @@ import User from '../../../../lib/models/User';
 const handler = function (req, reply) {
     const email = req.payload.email;
     User.register(email)
-        .then( user => reply({ user: user.id }))
+        .then( user => reply({}).code(200))
         .catch(err => reply(Boom.wrap(err, 400)));
 };
 

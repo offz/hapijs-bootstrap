@@ -2,6 +2,7 @@
 
 import createUser from './createUser';
 import validateUserSession from './validateUserSession';
+import updateUserPassword from './updateUserPassword';
 
 export default [
     {
@@ -43,10 +44,28 @@ export default [
             plugins: {
                 'hapi-swagger': {
                     responses: {
-                        200: {
-                            description: 'Success',
-                            schema: createUser.respSchema
-                        },
+                        200: { description: 'Success'},
+                        400: { description: 'Bad Request' },
+                        404: { description: 'Not found' }
+                    }
+                }
+            }
+        }
+    },
+    {
+        method: 'POST',
+        path: '/api/users/{userId}/password',
+        handler: updateUserPassword.handler,
+        config: {
+            description: 'Update user password.',
+            notes: 'Update user password..',
+            tags: ['api'],
+            auth: false,
+            validate: updateUserPassword.validate,
+            plugins: {
+                'hapi-swagger': {
+                    responses: {
+                        204: { description: 'Success' },
                         400: { description: 'Bad Request' },
                         404: { description: 'Not found' }
                     }
