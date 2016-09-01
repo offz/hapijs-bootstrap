@@ -14,19 +14,9 @@ import User from '../../../../lib/models/User';
 
 const handler = function (req, reply) {
     const email = req.payload.email;
-    const personalNo = req.payload.personalNo;
-
-    User.register(email, personalNo)
-        .then( (user) => {
-            
-            return reply({
-                userId: user.id
-            });
-            
-        })
-        .catch((err) => {
-            return reply(Boom.wrap(err, 400));
-        });
+    User.register(email)
+        .then( user => reply({ user: user.id }))
+        .catch(err => reply(Boom.wrap(err, 400)));
 };
 
 /**
@@ -43,16 +33,15 @@ const validate = {
         email: Joi.string().email({
             minDomainAtoms: 2
         }),
-        personalNo: Joi.string()
     })
 };
 
 const respSchema = Joi.object({
-    userId: Joi.string()
+    user: Joi.string()
 }).label('Result');
 
 const response = {
     schema: respSchema
 };
 
-export default { handler, validate, response, respSchema }
+export default { handler, validate, response, respSchema };

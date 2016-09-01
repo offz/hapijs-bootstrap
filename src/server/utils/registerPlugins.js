@@ -78,7 +78,7 @@ export default function (server, callback = function () {}) {
         server.register(plugin, options, cb);
 
     }, callback);
-};
+}
 
 
 

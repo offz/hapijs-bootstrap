@@ -7,10 +7,7 @@ import registerPlugins from './utils/registerPlugins';
 
 let server;
 
-
-function start(next) {
-    console.log('Server starting.');
-
+const init = function(next) {
     server = new Hapi.Server();
 
     // Setup connection with label `web`
@@ -30,29 +27,27 @@ function start(next) {
         labels: ['web']
     });
 
-    console.log('Start registering plugins.');
-    // Register plugins
-    return registerPlugins(server, (err) => {
-        if (err) return next(err);
-        console.log('Register plugins successful.');
+    return registerPlugins(server, () => next(server));
+};
 
-        return server.start( (err) => {
+const start = function(next) {
+    return init( () => {
+        return server.start( err => {
             if (err) return next(err);
-
-            console.log('Server started at', server.select('web').info.uri);
-            return next(err);
+            console.log('Server started at port ' + config.port);
+            return next();
         });
     });
-}
+};
 
-function stop(next) {
-    server.stop( err => {
+const stop = function(next) {
+    return server.stop( err => {
         if (err) return next(err);
         server = null;
         console.log('Server stopped.');
-        return next(err);
+        return next();
     });
-}
+};
 
-export {start, stop};
+export {init, start, stop};
 

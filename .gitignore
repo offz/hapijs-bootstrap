@@ -47,3 +47,6 @@ goodLog
 # babel dist / test tmp
 dist
 tmp
+
+coverage
+.nyc_output

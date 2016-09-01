@@ -3,6 +3,7 @@
 import Promise from 'bluebird';
 import Mongoose from 'mongoose';
 
+Mongoose.Promise = Promise;
 Promise.promisifyAll(Mongoose);
 
 exports.register = (plugin, options, next) => {
